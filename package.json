@@ -1,37 +1,37 @@
 {
   "name": "nueatech",
   "version": "1.0.0",
-  "description": "บรริษัทเหนือเทค จำกัด (Nueatech Co., Ltd.) ให้บริการแพลตฟอร์กูสอน(guson)",
+  "description": "เว็บไซต์ทางการของบริษัท เหนือเทค จำกัด ผู้พัฒนาแพลตฟอร์มการศึกษา Guson",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "vite",
+    "start": "vite",
     "build": "vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/themesberg/landwind.git"
+    "url": "git+https://github.com/namput/nueatech.git"
   },
   "keywords": [
-    "landing",
-    "page",
-    "tailwind",
-    "tailwind",
-    "css",
-    "flowbite",
-    "responsive",
-    "html",
-    "css",
-    "javascript",
-    "design"
+    "Guson",
+    "Nueatech",
+    "ติวเตอร์ออนไลน์",
+    "การศึกษา",
+    "EdTech",
+    "React",
+    "Vite",
+    "Tailwind",
+    "Landing Page",
+    "เว็บไซต์บริษัท"
   ],
-  "author": "Themesberg",
+  "author": "บริษัท เหนือเทค จำกัด (Nueatech Co., Ltd.)",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/themesberg/landwind/issues"
+    "url": "https://github.com/namput/nueatech/issues"
   },
-  "homepage": "https://github.com/themesberg/landwind#readme",
+  "homepage": "https://nueatech.com",
   "devDependencies": {
     "@types/react": "^19.1.9",
     "@types/react-dom": "^19.1.7",
