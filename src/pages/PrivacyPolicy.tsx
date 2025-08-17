@@ -1,42 +1,15 @@
-import React from 'react';
+import React from "react";
 
-const PrivacyPolicy = () => {
+export default function PrivacyPolicy() {
   return (
-    <div className="max-w-3xl mx-auto px-4 py-12 text-gray-800">
-      <h1 className="text-3xl font-bold mb-6">นโยบายความเป็นส่วนตัว (Privacy Policy)</h1>
-
-      <p className="mb-4">
-        บริษัทของเราให้ความสำคัญกับความเป็นส่วนตัวของผู้ใช้งานทุกคน โดยเราจะเก็บรวบรวม ใช้ และเปิดเผยข้อมูลส่วนบุคคลของคุณอย่างโปร่งใส และตามหลักกฎหมายที่เกี่ยวข้อง
-      </p>
-
-      <h2 className="text-xl font-semibold mt-8 mb-2">1. ข้อมูลที่เราเก็บรวบรวม</h2>
-      <ul className="list-disc ml-6 mb-4">
-        <li>ชื่อ-นามสกุล</li>
-        <li>อีเมล เบอร์โทรศัพท์</li>
-        <li>พฤติกรรมการใช้งานเว็บไซต์</li>
+    <section className="mx-auto max-w-7xl px-4 py-14">
+      <h1 className="text-3xl font-semibold">นโยบายความเป็นส่วนตัว</h1>
+      <p className="mt-3 max-w-3xl text-neutral-300">คำอธิบายแนวทางการเก็บ ใช้ และเปิดเผยข้อมูลส่วนบุคคลของผู้ใช้ (ตัวอย่าง)</p>
+      <ul className="mt-4 list-disc space-y-2 pl-6 text-neutral-300">
+        <li>เราเก็บข้อมูลเท่าที่จำเป็นต่อการให้บริการ</li>
+        <li>ผู้ใช้สามารถร้องขอลบ/ดาวน์โหลดข้อมูลส่วนตัวได้</li>
+        <li>มีมาตรการรักษาความปลอดภัยตามสมควร</li>
       </ul>
-
-      <h2 className="text-xl font-semibold mt-8 mb-2">2. การใช้ข้อมูล</h2>
-      <p className="mb-4">
-        เราใช้ข้อมูลเพื่อตอบสนองต่อการใช้งานของคุณ เช่น การติดต่อกลับ การพัฒนาบริการ และการวิเคราะห์เพื่อปรับปรุงประสบการณ์ผู้ใช้
-      </p>
-
-      <h2 className="text-xl font-semibold mt-8 mb-2">3. การเปิดเผยข้อมูล</h2>
-      <p className="mb-4">
-        เราจะไม่ขาย แลกเปลี่ยน หรือถ่ายโอนข้อมูลส่วนบุคคลของคุณให้บุคคลที่สาม เว้นแต่ได้รับอนุญาตจากคุณ หรือกฎหมายกำหนดไว้
-      </p>
-
-      <h2 className="text-xl font-semibold mt-8 mb-2">4. สิทธิของผู้ใช้งาน</h2>
-      <p className="mb-4">
-        คุณมีสิทธิ์ในการเข้าถึง แก้ไข หรือร้องขอให้ลบข้อมูลส่วนบุคคลของคุณได้ตลอดเวลา โดยติดต่อผ่านช่องทางที่ระบุในหน้า "ติดต่อเรา"
-      </p>
-
-      <h2 className="text-xl font-semibold mt-8 mb-2">5. การปรับปรุงนโยบาย</h2>
-      <p>
-        เราอาจปรับปรุงนโยบายนี้เป็นระยะ ๆ โดยจะแจ้งให้ทราบผ่านหน้าเว็บไซต์
-      </p>
-    </div>
+    </section>
   );
-};
-
-export default PrivacyPolicy;
+}

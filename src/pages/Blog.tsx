@@ -1,143 +1,78 @@
-// src/pages/Blog.tsx
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
 
-interface BlogPost {
-  title: string;
-  excerpt: string;
-  slug: string;
-  date: string;
-  category: string;
-  image: string;
-}
+import React, { useMemo, useState } from 'react';
+import Section from '../components/ui/Section';
+import { GlassCard } from '../components/ui/GlassCard';
+import PostCard from '../components/blog/PostCard';
+import { POSTS, type PostMeta } from '../data/posts';
+import { Search, Filter } from 'lucide-react';
 
-const posts: BlogPost[] = [
-  {
-    title: 'การศึกษาในยุคดิจิทัล : การเติบโตของการเรียนกับติวเตอร์ออนไลน์',
-    excerpt: 'ในยุคดิจิทัลเทคโนโลยีเข้ามามีบทบาทสำคัญในชีวิตประจำวัน หนึ่งในนั้นคือการเรียนกับ "ติวเตอร์ออนไลน์" กลายเป็นทางเลือก...',
-    slug: 'digital-education-growth',
-    date: '1 ส.ค. 2025',
-    category: 'บทความ',
-    image: '/images/blog-1.jpg',
-  },
-  {
-    title: 'เพิ่มประสิทธิภาพการเรียนรู้ด้วยบริการติวเตอร์',
-    excerpt: 'ในยุคที่การศึกษาเปลี่ยนแปลงไปอย่างรวดเร็ว การเรียนรู้แบบตัวต่อตัวช่วยเสริมสร้างความเข้าใจได้อย่างลึกซึ้ง...',
-    slug: 'tutor-service-benefits',
-    date: '2 ส.ค. 2025',
-    category: 'บทความ',
-    image: '/images/blog-2.jpg',
-  },
-  {
-    title: 'ควอตวิชาหรือติวกับติวเตอร์ส่วนตัว : เลือกแบบไหนเหมาะกับคุณ',
-    excerpt: 'การเลือกเรียนกับติวเตอร์หรือเรียนรวมควรพิจารณาความเหมาะสมของแต่ละบุคคล มาดูข้อดีข้อเสียของทั้งสองทางเลือก...',
-    slug: 'private-vs-group',
-    date: '3 ส.ค. 2025',
-    category: 'บทความ',
-    image: '/images/blog-3.jpg',
-  },
-  {
-    title: 'การศึกษาในยุคดิจิทัล : การเติบโตของการเรียนกับติวเตอร์ออนไลน์ (ซ้ำ)',
-    excerpt: 'บทความนี้พูดถึงภาพรวมของตลาดการศึกษาออนไลน์ในประเทศไทยและพฤติกรรมของผู้เรียนในปัจจุบัน...',
-    slug: 'digital-edu-2',
-    date: '4 ส.ค. 2025',
-    category: 'บทความ',
-    image: '/images/blog-1.jpg',
-  },
-  {
-    title: 'เพิ่มประสิทธิภาพการเรียนรู้ด้วยบริการติวเตอร์ (ซ้ำ)',
-    excerpt: 'เรียนรู้แนวทางการปรับตัวให้เข้ากับการเรียนออนไลน์ และวิธีเลือกติวเตอร์ที่เหมาะสมกับตนเอง...',
-    slug: 'tutor-benefit-2',
-    date: '5 ส.ค. 2025',
-    category: 'บทความ',
-    image: '/images/blog-2.jpg',
-  },
-  {
-    title: 'ควอตวิชาหรือติวกับติวเตอร์ส่วนตัว : เลือกแบบไหนเหมาะกับคุณ (ซ้ำ)',
-    excerpt: 'เปรียบเทียบระหว่างการเรียนแบบกลุ่มกับแบบตัวต่อตัว เพื่อช่วยให้ผู้เรียนตัดสินใจง่ายขึ้น...',
-    slug: 'private-vs-group-2',
-    date: '6 ส.ค. 2025',
-    category: 'บทความ',
-    image: '/images/blog-3.jpg',
-  },
-];
+const CATEGORIES = ['All', ...Array.from(new Set(POSTS.map(p => p.category)))];
 
-const Blog = () => {
-  const [currentPage, setCurrentPage] = useState(1);
-  const postsPerPage = 6;
+export default function Blog(){
+  const [q, setQ] = useState('');
+  const [cat, setCat] = useState('All');
+  const [page, setPage] = useState(1);
 
-  const indexOfLastPost = currentPage * postsPerPage;
-  const indexOfFirstPost = indexOfLastPost - postsPerPage;
-  const currentPosts = posts.slice(indexOfFirstPost, indexOfLastPost);
-  const totalPages = Math.ceil(posts.length / postsPerPage);
+  const pageSize = 6;
+
+  const visible = useMemo(()=> POSTS.filter(p => p.published !== false), []);
+
+  const filtered = useMemo(()=>{
+    const term = q.trim().toLowerCase();
+    return visible.filter(p => {
+      const byCat = cat === 'All' || p.category === cat;
+      const byQ = !term || p.title.toLowerCase().includes(term) || p.excerpt.toLowerCase().includes(term) || (p.tags||[]).some(t=>t.toLowerCase().includes(term));
+      return byCat && byQ;
+    }).sort((a,b)=> new Date(b.date).getTime() - new Date(a.date).getTime());
+  }, [visible, q, cat]);
+
+  const totalPages = Math.max(1, Math.ceil(filtered.length / pageSize));
+  const pageItems = filtered.slice((page-1)*pageSize, page*pageSize);
 
   return (
-    <div className="bg-white min-h-screen text-blue-800 py-16 px-4">
-      <div className="max-w-6xl mx-auto">
-        <h1 className="text-3xl font-bold text-center mb-10">บทความและข่าวสาร</h1>
-
-        {/* Search & Filter */}
-        <div className="flex flex-wrap items-center gap-2 justify-between mb-8">
-          <div className="flex-1 flex flex-wrap gap-2">
-            {['ทั้งหมด', 'บทความ', 'ข่าวสาร', 'โปรโมชั่น'].map((cat) => (
-              <button
-                key={cat}
-                className="bg-blue-100 text-blue-800 px-4 py-1 rounded-full text-sm hover:bg-blue-200"
-              >
-                {cat}
-              </button>
-            ))}
+    <div className="relative">
+      {/* HERO */}
+      <Section aurora angleBottom className="pt-16 pb-10">
+        <div className="grid items-center gap-8 md:grid-cols-[1.15fr_.85fr]">
+          <div>
+            <span className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs">บล็อก</span>
+            <h1 className="mt-4 text-4xl font-semibold leading-tight md:text-6xl">เล่าเทคโนโลยีแบบใช้ได้จริง</h1>
+            <p className="mt-3 max-w-2xl text-lg text-neutral-300">แชร์บทความจากประสบการณ์จริง—เว็บ, โมบาย, ระบบองค์กร, Performance, Security และการสร้างแพลตฟอร์มที่โตได้</p>
           </div>
-          <div className="relative">
-            <input
-              type="text"
-              placeholder="ค้นหาบทความ..."
-              className="bg-blue-100 text-sm rounded-full px-4 py-2 pr-10 text-blue-800 focus:outline-none"
-            />
-            <span className="absolute right-3 top-2.5 text-blue-500">🔍</span>
-          </div>
-        </div>
-
-        {/* Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {currentPosts.map((post, idx) => (
-            <div key={idx} className="bg-white rounded-lg shadow-md overflow-hidden">
-              <img src={post.image} alt={post.title} className="w-full h-48 object-cover" />
-              <div className="p-4">
-                <span className="bg-blue-100 text-blue-800 text-xs px-2 py-1 rounded-full inline-block mb-2">
-                  {post.category}
-                </span>
-                <h2 className="text-lg font-semibold mb-1">
-                  <Link to={`/blog/${post.slug}`} className="hover:text-blue-600">
-                    {post.title}
-                  </Link>
-                </h2>
-                <p className="text-sm text-blue-500 mb-2">{post.date}</p>
-                <p className="text-sm text-blue-700">{post.excerpt}</p>
+          <GlassCard className="p-6">
+            <div className="grid gap-3 md:grid-cols-2">
+              <div className="flex items-center gap-2 rounded-xl border border-white/10 bg-white/5 px-3 py-2">
+                <Search className="h-4 w-4" />
+                <input value={q} onChange={(e)=>{ setQ(e.target.value); setPage(1); }} placeholder="ค้นหาหัวข้อ/แท็ก" className="w-full bg-transparent outline-none placeholder:text-white/60"/>
+              </div>
+              <div className="flex flex-wrap items-center gap-2">
+                <span className="hidden items-center gap-1 rounded-2xl border border-white/10 bg-white/5 px-3 py-1 text-xs md:inline-flex"><Filter className="h-3.5 w-3.5" /> หมวดหมู่</span>
+                {CATEGORIES.map((c)=> (
+                  <button key={c} onClick={()=>{ setCat(c); setPage(1); }} className={`inline-flex items-center gap-2 rounded-2xl border px-3 py-1 text-sm ${cat===c? 'border-white/30 bg-white/15' : 'border-white/10 bg-white/5 hover:bg-white/10'}`}>{c}</button>
+                ))}
               </div>
             </div>
-          ))}
+          </GlassCard>
         </div>
+      </Section>
+
+      {/* GRID */}
+      <Section aurora angleTop angleBottom className="py-16">
+        {pageItems.length===0 ? (
+          <div className="text-center opacity-80">ยังไม่มีบทความที่ตรงกับเงื่อนไข</div>
+        ) : (
+          <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+            {pageItems.map(p => <PostCard key={p.slug} p={p} />)}
+          </div>
+        )}
 
         {/* Pagination */}
-        <div className="flex justify-center mt-10 gap-2">
-          {Array.from({ length: totalPages }, (_, i) => i + 1).map((num) => (
-            <button
-              key={num}
-              onClick={() => setCurrentPage(num)}
-              className={`w-8 h-8 rounded-full text-sm font-medium transition ${
-                num === currentPage
-                  ? 'bg-blue-600 text-white'
-                  : 'bg-blue-200 text-blue-800 hover:bg-blue-300'
-              }`}
-            >
-              {num}
-            </button>
-          ))}
+        <div className="mt-8 flex items-center justify-center gap-2 text-sm">
+          <button disabled={page===1} onClick={()=> setPage(p=> Math.max(1, p-1))} className="rounded-xl border border-white/10 bg-white/5 px-3 py-1 disabled:opacity-40">ก่อนหน้า</button>
+          <span className="opacity-80">หน้า {page} / {totalPages}</span>
+          <button disabled={page===totalPages} onClick={()=> setPage(p=> Math.min(totalPages, p+1))} className="rounded-xl border border-white/10 bg-white/5 px-3 py-1 disabled:opacity-40">ถัดไป</button>
         </div>
-      </div>
+      </Section>
     </div>
   );
-};
-
-export default Blog;
+}

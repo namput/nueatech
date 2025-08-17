@@ -1,3 +1,36 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+/* Aurora background */
+.aurora{
+  position: relative;
+}
+.aurora:before,
+.aurora:after{
+  content: "";
+  position: absolute; inset: -20% -10% auto -10%; height: 60%;
+  background: linear-gradient(90deg, transparent, rgba(56,189,248,.18), rgba(167,139,250,.18), rgba(244,114,182,.16), transparent);
+  filter: blur(40px); pointer-events: none; z-index: 0;
+}
+.aurora:after{ inset: auto -10% -20% -10%; height: 55%; transform: rotate(180deg); }
+
+/* Angled section helpers (clip-path) */
+.angle-top{ position: relative; }
+.angle-top:before{ content:""; position:absolute; inset:-64px 0 auto 0; height:64px; background:linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,0)); clip-path: polygon(0 100%, 100% 0, 100% 100%, 0 100%); }
+.angle-bottom{ position: relative; }
+.angle-bottom:after{ content:""; position:absolute; inset:auto 0 -64px 0; height:64px; background:linear-gradient(0deg, rgba(255,255,255,.06), rgba(255,255,255,0)); clip-path: polygon(0 0, 100% 0, 100% 0, 0 100%); }
+
+/* Glass card border animation */
+.card-glass{ position: relative; }
+.card-glass:before{ content:""; position:absolute; inset:-1px; border-radius:1.25rem; padding:1px; background: linear-gradient(135deg, rgba(56,189,248,.5), rgba(167,139,250,.35), rgba(244,114,182,.25)); -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0); -webkit-mask-composite: xor; mask-composite: exclude; opacity:.25; transition:opacity .25s ease; }
+.card-glass:hover:before{ opacity:.65; }
+
+/* Logo ticker */
+.ticker{ display:flex; gap:2.5rem; animation: scroll 28s linear infinite; }
+.ticker:hover{ animation-play-state: paused; }
+@keyframes scroll{ from{ transform: translateX(0); } to{ transform: translateX(-50%); } }
+
+/* Utility if not using Tailwind arbitrary values */
+.container{ max-width:80rem; margin:0 auto; padding:0 1rem; }

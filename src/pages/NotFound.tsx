@@ -1,22 +1,12 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React from "react";
+import { Link } from "react-router-dom";
 
-const NotFound = () => {
+export default function NotFound() {
   return (
-    <div className="min-h-[70vh] flex flex-col justify-center items-center text-center px-4">
-      <h1 className="text-5xl font-bold text-red-600 mb-4">404</h1>
-      <h2 className="text-2xl font-semibold mb-2">ไม่พบหน้าที่คุณต้องการ</h2>
-      <p className="text-gray-600 mb-6">
-        หน้าที่คุณพยายามเข้าชมไม่มีอยู่ในระบบ หรืออาจถูกย้ายไปแล้ว
-      </p>
-      <Link
-        to="/"
-        className="bg-blue-600 text-white px-6 py-2 rounded hover:bg-blue-700 transition"
-      >
-        กลับสู่หน้าแรก
-      </Link>
-    </div>
+    <section className="mx-auto max-w-7xl px-4 py-24 text-center">
+      <h1 className="text-5xl font-semibold">404</h1>
+      <p className="mt-2 text-neutral-300">ไม่พบหน้าที่คุณต้องการ</p>
+      <Link to="/" className="mt-4 inline-block rounded-2xl border border-white/10 bg-white/10 px-4 py-2">กลับหน้าแรก</Link>
+    </section>
   );
-};
-
-export default NotFound;
+}
