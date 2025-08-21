@@ -1,0 +1,1 @@
+import{j as e}from"./index-CHha_AOZ.js";function i({stats:s}){return e.jsx("div",{className:"grid gap-3 md:grid-cols-3",children:s.map(a=>e.jsxs("div",{className:"rounded-xl border border-white/10 bg-white/5 p-4",children:[e.jsx("div",{className:"text-sm opacity-80",children:a.label}),e.jsx("div",{className:"text-2xl font-semibold",children:a.value})]},a.label))})}export{i as S};

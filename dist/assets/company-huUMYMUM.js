@@ -1,0 +1,1 @@
+const e={th:"บริษัท เหนือเทค จำกัด",en:"Nueatech Co., Ltd.",summary:"เราคือทีมเทคโนโลยีที่โฟกัสผลลัพธ์ สร้างโปรดักต์คุณภาพระดับโลกจากประเทศไทย เน้นความเรียบง่าย เร็ว และวัดผลได้",email:"hello@nueatech.example",hero:"/logo.png"};export{e as C};
