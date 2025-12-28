@@ -1,85 +1,64 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-
+<urlset
+      xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
+            http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
     <url>
-        <loc>https://nueatech.co.th/</loc>
+        <loc>https://nueatech.co.th</loc>
         <lastmod>2025-02-24</lastmod>
         <changefreq>daily</changefreq>
-        <priority>1.0</priority>
+        <priority>1</priority>
     </url>
 
     <url>
         <loc>https://nueatech.co.th/about</loc>
         <lastmod>2025-02-24</lastmod>
         <changefreq>monthly</changefreq>
-        <priority>0.8</priority>
+        <priority>1</priority>
     </url>
 
     <url>
         <loc>https://nueatech.co.th/team</loc>
         <lastmod>2025-02-24</lastmod>
         <changefreq>monthly</changefreq>
-        <priority>0.7</priority>
+        <priority>1</priority>
     </url>
 
     <url>
         <loc>https://nueatech.co.th/services</loc>
         <lastmod>2025-02-24</lastmod>
         <changefreq>monthly</changefreq>
-        <priority>0.9</priority>
+        <priority>1</priority>
     </url>
 
     <url>
         <loc>https://nueatech.co.th/portfolio</loc>
         <lastmod>2025-02-24</lastmod>
         <changefreq>monthly</changefreq>
-        <priority>0.7</priority>
+        <priority>1</priority>
     </url>
 
     <url>
         <loc>https://nueatech.co.th/blog</loc>
         <lastmod>2025-02-24</lastmod>
         <changefreq>daily</changefreq>
-        <priority>0.9</priority>
+        <priority>1</priority>
     </url>
-
-    <!-- blog/:slug ต้อง generate แยกตามบทความจริง -->
-    <!-- ตัวอย่าง -->
-    <!--
-    <url>
-        <loc>https://nueatech.co.th/blog/how-to-build-edtech-platform</loc>
-        <lastmod>2025-02-24</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.8</priority>
-    </url>
-    -->
 
     <url>
         <loc>https://nueatech.co.th/contact</loc>
         <lastmod>2025-02-24</lastmod>
         <changefreq>yearly</changefreq>
-        <priority>0.6</priority>
+        <priority>1</priority>
     </url>
 
     <url>
         <loc>https://nueatech.co.th/careers</loc>
         <lastmod>2025-02-24</lastmod>
         <changefreq>monthly</changefreq>
-        <priority>0.6</priority>
+        <priority>1</priority>
     </url>
 
-    <url>
-        <loc>https://nueatech.co.th/privacy</loc>
-        <lastmod>2025-02-24</lastmod>
-        <changefreq>yearly</changefreq>
-        <priority>0.4</priority>
-    </url>
-
-    <url>
-        <loc>https://nueatech.co.th/thai-id-validator</loc>
-        <lastmod>2025-02-24</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.7</priority>
-    </url>
-
+   
 </urlset>
